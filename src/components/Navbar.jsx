@@ -71,7 +71,8 @@ const Navbar = ({ isScrolled }) => {
                         <div className="flex flex-col p-6 gap-4 font-bold text-lg">
                             <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
                             <a href="#process" onClick={() => setIsMobileMenuOpen(false)}>Process</a>
-                            <a href="#portfolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
+                            <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</a>
+                            <Link to="/gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
                             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-[#d45b27] text-white py-3 rounded-md w-full mt-2 text-center block">
                                 Get Free Quote
                             </Link>

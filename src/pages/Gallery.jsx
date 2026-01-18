@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -39,10 +39,20 @@ const CATEGORIES = [
 
 const Gallery = () => {
     const [filter, setFilter] = useState('all');
+    const [visibleCount, setVisibleCount] = useState(20);
 
     const filteredItems = filter === 'all'
         ? PORTFOLIO_ITEMS
         : PORTFOLIO_ITEMS.filter(item => item.category === filter);
+
+    const handleViewMore = () => {
+        setVisibleCount(prev => prev + 20);
+    };
+
+    // Reset visible count when filter changes
+    useEffect(() => {
+        setVisibleCount(20);
+    }, [filter]);
 
     return (
         <div className="min-h-screen bg-stone-50 font-sans text-stone-800">
@@ -95,7 +105,7 @@ const Gallery = () => {
                     className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <AnimatePresence>
-                        {filteredItems.map(item => (
+                        {filteredItems.slice(0, visibleCount).map(item => (
                             <motion.div
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -122,6 +132,18 @@ const Gallery = () => {
                         ))}
                     </AnimatePresence>
                 </motion.div>
+
+                {/* View More Button */}
+                {visibleCount < filteredItems.length && (
+                    <div className="text-center mt-12">
+                        <button
+                            onClick={handleViewMore}
+                            className="bg-white border-2 border-[#d45b27] text-[#d45b27] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#d45b27] hover:text-white transition-colors shadow-lg"
+                        >
+                            View More
+                        </button>
+                    </div>
+                )}
             </div>
 
             <CTASection />
