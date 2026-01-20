@@ -8,10 +8,22 @@ import CTASection from '../components/CTASection';
 const galleryImages = import.meta.glob('../assets/gallery/*.jpeg', { eager: true });
 
 // Convert imported modules to array of objects
+// Define which image IDs belong to which category
+const COMMERCIAL_IDS = [15, 21, 24, 32, 38, 47, 49, 50];
+const CONCRETE_IDS = [27, 28, 29, 30, 31, 68, 82];
+
 const PORTFOLIO_ITEMS = Object.values(galleryImages).map((mod, index) => {
-    // Assign random category for demo purposes (cycling through categories)
-    const categoryTypes = ['residential', 'commercial', 'concrete'];
-    const category = categoryTypes[index % categoryTypes.length];
+    const id = index + 1;
+
+    // Assign category based on explicit ID lists
+    let category;
+    if (COMMERCIAL_IDS.includes(id)) {
+        category = 'commercial';
+    } else if (CONCRETE_IDS.includes(id)) {
+        category = 'concrete';
+    } else {
+        category = 'residential';
+    }
 
     // Create meaningful titles based on category
     const titles = {
@@ -19,10 +31,10 @@ const PORTFOLIO_ITEMS = Object.values(galleryImages).map((mod, index) => {
         commercial: ['Industrial Security Fence', 'Chain Link Perimeter', 'Steel Guard Rails', 'Commercial Gate System'],
         concrete: ['Stamped Concrete Patio', 'Retaining Wall', 'Concrete Walkway', 'Decorative Driveway']
     };
-    const title = titles[category][index % titles[category].length];
+    const title = titles[category][id % titles[category].length];
 
     return {
-        id: index + 1,
+        id: id,
         category: category,
         image: mod.default,
         title: title,

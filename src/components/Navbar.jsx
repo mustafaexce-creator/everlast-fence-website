@@ -33,7 +33,7 @@ const Navbar = ({ isScrolled }) => {
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-8 font-semibold text-stone-600">
                     <button onClick={() => scrollToSection('#services')} className="hover:text-[#d45b27] transition-colors">Services</button>
-                    <button onClick={() => scrollToSection('#process')} className="hover:text-[#d45b27] transition-colors">Our Process</button>
+
                     <Link to="/gallery" className="hover:text-[#d45b27] transition-colors">Gallery</Link>
                     <button onClick={() => scrollToSection('#reviews')} className="hover:text-[#d45b27] transition-colors">Reviews</button>
                     <Link to="/contact" className="hover:text-[#d45b27] transition-colors">Contact</Link>
@@ -70,7 +70,7 @@ const Navbar = ({ isScrolled }) => {
                     >
                         <div className="flex flex-col p-6 gap-4 font-bold text-lg">
                             <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
-                            <a href="#process" onClick={() => setIsMobileMenuOpen(false)}>Process</a>
+
                             <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</a>
                             <Link to="/gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
                             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-[#d45b27] text-white py-3 rounded-md w-full mt-2 text-center block">

@@ -3,6 +3,7 @@ import TopBar from '../components/TopBar';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import StatsBar from '../components/StatsBar';
+import AboutSection from '../components/AboutSection';
 import Reviews from '../components/Reviews';
 import Services from '../components/Services';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -27,6 +28,7 @@ const EverlastFenceLP = () => {
             <Navbar isScrolled={isScrolled} />
             <Hero />
             <StatsBar />
+            <AboutSection />
             <Reviews />
             <Services />
             <WhyChooseUs />

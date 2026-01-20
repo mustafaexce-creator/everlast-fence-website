@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const COMPANY_LINKS = ['About Us', 'Our Process', 'Portfolio', 'Careers', 'Reviews'];
-const SERVICE_LINKS = ['Wood Privacy', 'Vinyl & PVC', 'Aluminum & Ornamental', 'Chain Link', 'Automatic Gates'];
+const SERVICE_LINKS = ['Residential Fencing', 'Commercial Fencing', 'Rails', 'Decks & Porches', 'Concrete'];
 
 const Footer = () => {
     return (
@@ -16,7 +16,7 @@ const Footer = () => {
                         <img src={logo} alt="Everlast Fence Logo" className="h-20 w-auto" />
                     </div>
                     <p className="leading-relaxed">
-                        Premium fencing installations for residential and commercial properties. Built to last, styled to impress.
+                        Western New York's trusted provider of fencing, decks, porches, rails, and exterior solutions. Built to last, styled to impress.
                     </p>
                     <div className="flex gap-4">
                         {[1, 2, 3].map(i => (
@@ -58,16 +58,13 @@ const Footer = () => {
                 <div>
                     <h4 className="text-white font-bold text-lg mb-6 uppercase tracking-wider">Services</h4>
                     <ul className="space-y-4">
-                        <li>
-                            <button onClick={() => window.location.href = '/#services'} className="hover:text-white transition-colors flex items-center gap-2">
-                                <ChevronRight size={14} className="text-[#d45b27]" /> Residential
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={() => window.location.href = '/#services'} className="hover:text-white transition-colors flex items-center gap-2">
-                                <ChevronRight size={14} className="text-[#d45b27]" /> Commercial
-                            </button>
-                        </li>
+                        {SERVICE_LINKS.map(link => (
+                            <li key={link}>
+                                <button onClick={() => window.location.href = '/#services'} className="hover:text-white transition-colors flex items-center gap-2">
+                                    <ChevronRight size={14} className="text-[#d45b27]" /> {link}
+                                </button>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
@@ -77,7 +74,7 @@ const Footer = () => {
                     <div className="space-y-6">
                         <div className="flex items-start gap-4">
                             <MapPin className="text-[#d45b27] shrink-0" />
-                            <span>1234 Industrial Way<br />Springfield, ST 62704</span>
+                            <span>Western New York<br />Buffalo & Surrounding Areas</span>
                         </div>
                         <div className="flex items-center gap-4">
                             <Phone className="text-[#d45b27] shrink-0" />

@@ -9,7 +9,7 @@ const TopBar = () => {
                         <Clock size={14} /> Mon - Sat: 7am - 6pm
                     </span>
                     <span className="flex items-center gap-2 hidden md:flex">
-                        <MapPin size={14} /> Serving Greater Metro Area
+                        <MapPin size={14} /> Serving Western New York
                     </span>
                 </div>
                 <div className="flex gap-6 opacity-90">

@@ -40,14 +40,18 @@ const Hero = () => {
                     variants={staggerContainer}
                     className="text-white space-y-6 md:pt-16"
                 >
-                    <motion.div variants={fadeInUp} className="flex gap-3">
+                    <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
                         <span className="bg-[#007054] px-3 py-1 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-1">
                             <ShieldCheck size={14} /> Licensed & Insured
                         </span>
                         <span className="bg-white/20 backdrop-blur px-3 py-1 rounded text-xs font-bold uppercase tracking-wider border border-white/30">
-                            5-Year Warranty
+                            5-Star Service
                         </span>
                     </motion.div>
+
+                    <motion.p variants={fadeInUp} className="text-xl md:text-2xl font-bold text-[#d45b27] tracking-wide">
+                        Fences, Porches, Decks, and Exteriors
+                    </motion.p>
 
                     <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-black leading-tight tracking-tight">
                         Built Strong.<br />
@@ -55,7 +59,7 @@ const Hero = () => {
                     </motion.h1>
 
                     <motion.p variants={fadeInUp} className="text-lg md:text-xl text-stone-200 max-w-md font-medium leading-relaxed">
-                        Enhance your property's security and curb appeal with premium fencing solutions designed to withstand the elements.
+                        Western New York's premier exterior contractor. Enhance your property's security and curb appeal with solutions designed to withstand the elements.
                     </motion.p>
 
                     <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4">
