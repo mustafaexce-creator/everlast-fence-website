@@ -12,10 +12,7 @@ const TopBar = () => {
                         <MapPin size={14} /> Serving Western New York
                     </span>
                 </div>
-                <div className="flex gap-6 opacity-90">
-                    <a href="#" className="hover:text-[#d45b27] transition-colors">Careers</a>
-                    <a href="#" className="hover:text-[#d45b27] transition-colors">Request Service</a>
-                </div>
+
             </div>
         </div>
     );
