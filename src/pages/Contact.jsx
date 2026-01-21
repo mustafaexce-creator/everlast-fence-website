@@ -107,7 +107,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg">Phone</h3>
-                                        <p className="text-stone-600">(555) 123-4567</p>
+                                        <p className="text-stone-600">+1 (716) 335-8154</p>
                                         <p className="text-sm text-stone-500">Mon-Fri from 8am to 6pm</p>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@ const Contact = () => {
                                             value={formState.phone}
                                             onChange={handleChange}
                                             className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d45b27] focus:border-transparent transition-all"
-                                            placeholder="(555) 123-4567"
+                                            placeholder="+1 (716) 335-8154"
                                         />
                                     </div>
                                 </div>

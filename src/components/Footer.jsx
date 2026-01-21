@@ -78,11 +78,11 @@ const Footer = () => {
                         </div>
                         <div className="flex items-center gap-4">
                             <Phone className="text-[#d45b27] shrink-0" />
-                            <span className="text-white font-bold text-lg">(555) 123-4567</span>
+                            <a href="tel:+17163358154" className="text-white font-bold text-lg hover:text-[#d45b27] transition-colors">+1 (716) 335-8154</a>
                         </div>
                         <div className="flex items-start gap-4">
                             <Clock className="text-[#d45b27] shrink-0" />
-                            <span>Mon-Fri: 7am - 6pm<br />Sat: 8am - 2pm</span>
+                            <span>Mon-Fri: 7am - 7pm<br />Sat-Sun: 7am - 2pm</span>
                         </div>
                     </div>
                 </div>

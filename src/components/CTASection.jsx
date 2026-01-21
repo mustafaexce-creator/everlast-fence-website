@@ -21,8 +21,8 @@ const CTASection = () => {
                     <Link to="/contact" className="bg-white text-[#d45b27] px-10 py-5 rounded-md font-bold text-xl shadow-xl hover:bg-stone-50 transition-colors inline-block">
                         Get Your Free Quote
                     </Link>
-                    <a href="tel:5551234567" className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-md font-bold text-xl hover:bg-white/10 transition-colors inline-block">
-                        (555) 123-4567
+                    <a href="tel:+17163358154" className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-md font-bold text-xl hover:bg-white/10 transition-colors inline-block">
+                        +1 (716) 335-8154
                     </a>
                 </div>
             </div>

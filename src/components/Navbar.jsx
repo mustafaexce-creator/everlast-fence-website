@@ -43,7 +43,7 @@ const Navbar = ({ isScrolled }) => {
                 <div className="hidden md:flex items-center gap-6">
                     <div className="flex flex-col items-end">
                         <span className="text-xs text-stone-500 font-bold uppercase tracking-wider">Call Now</span>
-                        <span className="text-lg font-black text-stone-900 leading-none">(555) 123-4567</span>
+                        <a href="tel:+17163358154" className="text-lg font-black text-stone-900 leading-none hover:text-[#d45b27] transition-colors">+1 (716) 335-8154</a>
                     </div>
                     <Link to="/contact" className="bg-[#d45b27] hover:bg-[#b84a1e] text-white px-6 py-3 rounded-md font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
