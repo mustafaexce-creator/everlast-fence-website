@@ -10,7 +10,7 @@ const galleryImages = import.meta.glob('../assets/gallery/*.jpeg', { eager: true
 // Convert imported modules to array of objects
 // Define which image IDs belong to which category
 const COMMERCIAL_IDS = [15, 21, 24, 32, 38, 47, 49, 50];
-const CONCRETE_IDS = [27, 28, 29, 30, 31, 68, 82];
+const CONCRETE_IDS = [27, 28, 29, 30, 31, 68, 82, 94];
 
 const PORTFOLIO_ITEMS = Object.values(galleryImages).map((mod, index) => {
     const id = index + 1;

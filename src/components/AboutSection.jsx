@@ -18,7 +18,7 @@ const AboutSection = () => {
                     <div className="h-1 w-20 bg-[#d45b27] mx-auto rounded-full mb-8"></div>
                     <p className="text-lg text-stone-600 leading-relaxed max-w-3xl mx-auto">
                         Everlast Fence is the premier provider of fencing and exterior solutions across Western New York.
-                        For over two decades, we've built our reputation on reliability, quality craftsmanship, and
+                        For over 10 years, we've built our reputation on reliability, quality craftsmanship, and
                         unwavering commitment to customer satisfaction. From residential privacy fences to commercial
                         security installations, decks, porches, rails, and concrete work—we deliver exceptional results
                         that stand the test of time. Our team of licensed professionals takes pride in transforming

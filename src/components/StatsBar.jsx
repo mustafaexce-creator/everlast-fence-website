@@ -1,5 +1,5 @@
 const STATS = [
-    { label: "Years Experience", value: "20" },
+    { label: "Years Experience", value: "10" },
     { label: "Customer Ratings", value: "5-Star" },
     { label: "Service Area", value: "All Over WNY" },
 ];
