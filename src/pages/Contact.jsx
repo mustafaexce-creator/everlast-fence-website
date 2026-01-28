@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import bbbBadge from '../assets/bbb-badge.png';
 
 const Contact = () => {
     const location = useLocation();
@@ -94,18 +95,12 @@ const Contact = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="flex justify-center mb-12"
                     >
-                        <div className="bg-stone-900 border-2 border-stone-600 rounded-lg px-6 py-4 flex items-center gap-4">
-                            <div className="flex flex-col items-center">
-                                <svg viewBox="0 0 100 100" className="w-12 h-12 text-white" fill="currentColor">
-                                    <path d="M50 10 C30 10 20 30 25 50 C20 70 30 90 50 90 C70 90 80 70 75 50 C80 30 70 10 50 10 Z M40 75 L40 25 L55 25 C65 25 70 35 65 45 C70 55 65 65 55 65 L50 65 L50 75 Z" />
-                                    <circle cx="50" cy="20" r="5" />
-                                </svg>
-                                <span className="text-white font-black text-lg tracking-wider mt-1">BBB</span>
-                            </div>
-                            <div className="border-l-2 border-stone-600 pl-4">
-                                <div className="text-white font-black text-xl tracking-wide">ACCREDITED</div>
-                                <div className="text-white font-black text-xl tracking-wide">BUSINESS</div>
-                            </div>
+                        <div className="bg-white rounded-2xl p-2">
+                            <img
+                                src={bbbBadge}
+                                alt="BBB Accredited Business"
+                                className="h-24 md:h-32 w-auto"
+                            />
                         </div>
                     </motion.div>
 
