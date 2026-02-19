@@ -1,46 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '../supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
-
-// Dynamically import all gallery images
-const galleryImages = import.meta.glob('../assets/gallery/*.jpeg', { eager: true });
-
-// Convert imported modules to array of objects
-// Define which image IDs belong to which category
-const COMMERCIAL_IDS = [15, 21, 24, 32, 38, 47, 49, 50];
-const CONCRETE_IDS = [27, 28, 29, 30, 31, 68, 82, 94];
-
-const PORTFOLIO_ITEMS = Object.values(galleryImages).map((mod, index) => {
-    const id = index + 1;
-
-    // Assign category based on explicit ID lists
-    let category;
-    if (COMMERCIAL_IDS.includes(id)) {
-        category = 'commercial';
-    } else if (CONCRETE_IDS.includes(id)) {
-        category = 'concrete';
-    } else {
-        category = 'residential';
-    }
-
-    // Create meaningful titles based on category
-    const titles = {
-        residential: ['Cedar Privacy Fence', 'Vinyl Backyard Fence', 'Decorative Picket Fence', 'Classic Wood Fencing'],
-        commercial: ['Industrial Security Fence', 'Chain Link Perimeter', 'Steel Guard Rails', 'Commercial Gate System'],
-        concrete: ['Stamped Concrete Patio', 'Retaining Wall', 'Concrete Walkway', 'Decorative Driveway']
-    };
-    const title = titles[category][id % titles[category].length];
-
-    return {
-        id: id,
-        category: category,
-        image: mod.default,
-        title: title,
-        desc: 'Professional Installation'
-    };
-});
 
 const CATEGORIES = [
     { id: 'all', label: 'All Work' },
@@ -52,10 +15,36 @@ const CATEGORIES = [
 const Gallery = () => {
     const [filter, setFilter] = useState('all');
     const [visibleCount, setVisibleCount] = useState(20);
+    const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    // Fetch images from Supabase
+    useEffect(() => {
+        const fetchImages = async () => {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('gallery_images')
+                .select('*')
+                .eq('visible', true)
+                .order('sort_order', { ascending: true });
+
+            if (!error && data) {
+                setImages(data);
+            }
+            setLoading(false);
+        };
+        fetchImages();
+    }, []);
+
+    // Get public URL for an image
+    const getImageUrl = (storagePath) => {
+        const { data } = supabase.storage.from('gallery-images').getPublicUrl(storagePath);
+        return data.publicUrl;
+    };
 
     const filteredItems = filter === 'all'
-        ? PORTFOLIO_ITEMS
-        : PORTFOLIO_ITEMS.filter(item => item.category === filter);
+        ? images
+        : images.filter(item => item.category === filter);
 
     const handleViewMore = () => {
         setVisibleCount(prev => prev + 20);
@@ -111,50 +100,62 @@ const Gallery = () => {
                     ))}
                 </div>
 
-                {/* Gallery Grid */}
-                <motion.div
-                    layout
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    <AnimatePresence>
-                        {filteredItems.slice(0, visibleCount).map(item => (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                key={item.id}
-                                className="group relative h-80 rounded-xl overflow-hidden shadow-xl cursor-pointer"
-                            >
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-
-                                {/* Overlay Gradient (for subtle depth on hover, optional, or remove entirely if not wanted) */}
-                                <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                                {/* ID Number - Visible on Hover */}
-                                <div className="absolute bottom-2 right-2 text-sm font-bold text-[#d45b27] select-none pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2 py-1 rounded">
-                                    #{item.id}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-
-                {/* View More Button */}
-                {visibleCount < filteredItems.length && (
-                    <div className="text-center mt-12">
-                        <button
-                            onClick={handleViewMore}
-                            className="bg-white border-2 border-[#d45b27] text-[#d45b27] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#d45b27] hover:text-white transition-colors shadow-lg"
-                        >
-                            View More
-                        </button>
+                {/* Loading state */}
+                {loading ? (
+                    <div className="flex items-center justify-center py-32">
+                        <div className="w-8 h-8 border-4 border-[#d45b27] border-t-transparent rounded-full animate-spin"></div>
                     </div>
+                ) : (
+                    <>
+                        {/* Gallery Grid */}
+                        <motion.div
+                            layout
+                            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        >
+                            <AnimatePresence>
+                                {filteredItems.slice(0, visibleCount).map(item => (
+                                    <motion.div
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3 }}
+                                        key={item.id}
+                                        className="group relative h-80 rounded-xl overflow-hidden shadow-xl cursor-pointer"
+                                    >
+                                        <img
+                                            src={getImageUrl(item.storage_path)}
+                                            alt={item.title || item.filename}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            loading="lazy"
+                                        />
+
+                                        {/* Overlay Gradient */}
+                                        <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+
+                        {/* View More Button */}
+                        {visibleCount < filteredItems.length && (
+                            <div className="text-center mt-12">
+                                <button
+                                    onClick={handleViewMore}
+                                    className="bg-white border-2 border-[#d45b27] text-[#d45b27] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#d45b27] hover:text-white transition-colors shadow-lg"
+                                >
+                                    View More
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Empty state */}
+                        {filteredItems.length === 0 && !loading && (
+                            <div className="text-center py-16">
+                                <p className="text-stone-500 text-lg">No images found in this category.</p>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 
