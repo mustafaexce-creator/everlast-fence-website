@@ -2,36 +2,30 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-import residentialImage from '../assets/residential-fence.jpeg';
-import commercialImage from '../assets/commercial-fence.jpeg';
-import concreteImage from '../assets/gallery/WhatsApp Image 2026-01-16 at 6.28.57 PM (1).jpeg';
-import railsImage from '../assets/rails-fence.png';
-import decksImage from '../assets/decks-porches.png';
+import residentialImage from '../assets/residential-cover.jpg';
+import commercialImage from '../assets/commercial-cover.jpg';
+import concreteImage from '../assets/concrete-cover.jpg';
+import decksRailsImage from '../assets/decks-rails-cover.jpg';
+import landClearingImage from '../assets/land-clearing-cover.jpg';
 
 const SERVICES = [
     {
         id: 'residential',
-        title: 'Residential Fencing',
-        description: 'Privacy, picket, and ornamental solutions for your home.',
+        title: 'Residential',
+        description: 'Privacy, picket, and ornamental fencing solutions for your home.',
         image: residentialImage,
     },
     {
         id: 'commercial',
-        title: 'Commercial Fencing',
-        description: 'High-security chain link, aluminum, and steel barriers.',
+        title: 'Commercial',
+        description: 'High-security chain link, aluminum, and steel barriers for business.',
         image: commercialImage,
     },
     {
-        id: 'rails',
-        title: 'Rails',
-        description: 'Aluminum, vinyl, and wood railings for safety and style.',
-        image: railsImage,
-    },
-    {
-        id: 'decks',
-        title: 'Decks & Porches',
-        description: 'Custom-built outdoor living spaces for your home.',
-        image: decksImage,
+        id: 'decks-and-rails',
+        title: 'Decks and Rails',
+        description: 'Custom-built decks, porches, and railing systems for safety and style.',
+        image: decksRailsImage,
     },
     {
         id: 'concrete',
@@ -39,13 +33,19 @@ const SERVICES = [
         description: 'Driveways, patios, walkways, and foundation work.',
         image: concreteImage,
     },
+    {
+        id: 'land-clearing',
+        title: 'Land Clearing and Excavation',
+        description: 'Professional land clearing, grading, and excavation services.',
+        image: landClearingImage,
+    },
 ];
 
 const Services = () => {
     const navigate = useNavigate();
 
-    const handleNavigate = (type) => {
-        navigate('/contact', { state: { service: type } });
+    const handleNavigate = (categoryId) => {
+        navigate(`/gallery?category=${categoryId}`);
     };
 
     return (
@@ -97,7 +97,7 @@ const Services = () => {
                                         }}
                                         className="text-[#d45b27] font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all"
                                     >
-                                        Get a Quote <ArrowRight size={16} />
+                                        View Our Work <ArrowRight size={16} />
                                     </button>
                                 </div>
                             </div>

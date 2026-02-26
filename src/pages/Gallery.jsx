@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -9,11 +10,15 @@ const CATEGORIES = [
     { id: 'all', label: 'All Work' },
     { id: 'residential', label: 'Residential' },
     { id: 'commercial', label: 'Commercial' },
+    { id: 'decks-and-rails', label: 'Decks & Rails' },
     { id: 'concrete', label: 'Concrete' },
+    { id: 'land-clearing', label: 'Land Clearing' },
 ];
 
 const Gallery = () => {
-    const [filter, setFilter] = useState('all');
+    const [searchParams] = useSearchParams();
+    const initialCategory = searchParams.get('category') || 'all';
+    const [filter, setFilter] = useState(initialCategory);
     const [visibleCount, setVisibleCount] = useState(20);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);

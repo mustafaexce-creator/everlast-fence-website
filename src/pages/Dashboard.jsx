@@ -8,11 +8,13 @@ import {
     ChevronRight
 } from 'lucide-react';
 
-const CATEGORIES = ['residential', 'commercial', 'concrete'];
+const CATEGORIES = ['residential', 'commercial', 'decks-and-rails', 'concrete', 'land-clearing'];
 const CATEGORY_COLORS = {
     residential: { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/40', solid: 'bg-emerald-500' },
     commercial: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/40', solid: 'bg-blue-500' },
+    'decks-and-rails': { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/40', solid: 'bg-purple-500' },
     concrete: { bg: 'bg-amber-500/20', text: 'text-amber-400', border: 'border-amber-500/40', solid: 'bg-amber-500' },
+    'land-clearing': { bg: 'bg-orange-500/20', text: 'text-orange-400', border: 'border-orange-500/40', solid: 'bg-orange-500' },
 };
 
 const Dashboard = () => {
@@ -345,7 +347,9 @@ const Dashboard = () => {
         hidden: images.filter(i => !i.visible).length,
         residential: images.filter(i => i.category === 'residential').length,
         commercial: images.filter(i => i.category === 'commercial').length,
+        'decks-and-rails': images.filter(i => i.category === 'decks-and-rails').length,
         concrete: images.filter(i => i.category === 'concrete').length,
+        'land-clearing': images.filter(i => i.category === 'land-clearing').length,
     };
 
     // =================== LOGIN SCREEN =================== //
@@ -696,14 +700,16 @@ const Dashboard = () => {
 
             {/* =================== STATS BAR =================== */}
             <div className="max-w-[1600px] mx-auto px-6 py-6">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-3">
                     {[
                         { label: 'Total', value: stats.total, icon: ImageIcon, color: 'from-stone-600 to-stone-700' },
                         { label: 'Visible', value: stats.visible, icon: Eye, color: 'from-emerald-600 to-emerald-700' },
                         { label: 'Hidden', value: stats.hidden, icon: EyeOff, color: 'from-stone-700 to-stone-800' },
                         { label: 'Residential', value: stats.residential, icon: FolderOpen, color: 'from-emerald-600 to-emerald-700' },
                         { label: 'Commercial', value: stats.commercial, icon: FolderOpen, color: 'from-blue-600 to-blue-700' },
+                        { label: 'Decks & Rails', value: stats['decks-and-rails'], icon: FolderOpen, color: 'from-purple-600 to-purple-700' },
                         { label: 'Concrete', value: stats.concrete, icon: FolderOpen, color: 'from-amber-600 to-amber-700' },
+                        { label: 'Land Clearing', value: stats['land-clearing'], icon: FolderOpen, color: 'from-orange-600 to-orange-700' },
                     ].map(stat => (
                         <motion.div
                             key={stat.label}

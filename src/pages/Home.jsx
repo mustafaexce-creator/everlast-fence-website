@@ -6,6 +6,7 @@ import StatsBar from '../components/StatsBar';
 import AboutSection from '../components/AboutSection';
 import Reviews from '../components/Reviews';
 import Services from '../components/Services';
+import OurWork from '../components/OurWork';
 import WhyChooseUs from '../components/WhyChooseUs';
 import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
@@ -31,6 +32,7 @@ const EverlastFenceLP = () => {
             <AboutSection />
             <Reviews />
             <Services />
+            <OurWork />
             <WhyChooseUs />
             <CTASection />
             <Footer />

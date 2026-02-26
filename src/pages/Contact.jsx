@@ -36,7 +36,7 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjK1Igqj6HYcYYBcXtNPLWweWVwBSN0A0vwoIuqQlwIVuoRjxTR42PwTfaMOCYlLvo/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsS1JRc-vBMV0fcLIJGjDrrWwaJwAsvnSY3UZMshdIIrvri_igT6X80kJrK9yN721M/exec';
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
